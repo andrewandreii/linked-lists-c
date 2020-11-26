@@ -1,0 +1,8 @@
+#! /usr/bin/sh
+
+export MALLOC_TRACE=$(pwd)/mtracedata
+gcc test.c -g
+./a.out
+mtrace a.out
+
+#! fileformat=sh
