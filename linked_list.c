@@ -66,6 +66,8 @@ void
 ll_insert (llist *ll, int idx, void *data) {
 	ll_node *node = ll_get(ll, idx);
 
+	if (!node) return;
+
 	ll_node *nnode = malloc(sizeof(ll_node));
 	nnode->d = malloc(ll->elem_size);
 	memcpy(nnode->d, data, ll->elem_size);
@@ -88,6 +90,8 @@ ll_insert (llist *ll, int idx, void *data) {
 void
 ll_remove (llist *ll, int idx) {
 	ll_node *node = ll_get(ll, idx);
+
+	if (!node) return;
 
 	if (node == ll->root) {
 		if (node == ll->end) {
