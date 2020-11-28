@@ -124,7 +124,7 @@ int
 ll_index (llist *ll, void *data) {
 	ll_node *node = ll->root;
 	int i = 0;
-	for (; node, memcmp(data, node->d, ll->elem_size) != 0; node = node->next, ++ i);
+	for (; node && memcmp(data, node->d, ll->elem_size) != 0; node = node->next, ++ i);
 
 	if (!node) return -1;
 
@@ -134,7 +134,7 @@ ll_index (llist *ll, void *data) {
 ll_node *
 ll_find (llist *ll, void *data) {
 	ll_node *node = ll->root;
-	for (; node, memcmp(data, node->d, ll->elem_size) != 0; node = node->next);
+	for (; node && memcmp(data, node->d, ll->elem_size) != 0; node = node->next);
 
 	if (!node) return NULL;
 
