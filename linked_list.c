@@ -120,7 +120,9 @@ int
 ll_index (llist *ll, void *data) {
 	ll_node *node = ll->root;
 	int i = 0;
-	for (; memcmp(data, node->d, ll->elem_size) != 0; node = node->next, ++ i);
+	for (; node, memcmp(data, node->d, ll->elem_size) != 0; node = node->next, ++ i);
+
+	if (!node) return -1;
 
 	return i;
 }
@@ -128,13 +130,17 @@ ll_index (llist *ll, void *data) {
 ll_node *
 ll_find (llist *ll, void *data) {
 	ll_node *node = ll->root;
-	for (; memcmp(data, node->d, ll->elem_size) != 0; node = node->next);
+	for (; node, memcmp(data, node->d, ll->elem_size) != 0; node = node->next);
+
+	if (!node) return NULL;
 
 	return node;
 }
 
 ll_node *
 ll_get (llist *ll, int idx) {
+	if (idx < 0 || idx >= ll->size) return NULL;
+
 	ll_node *node = ll->root;
 	int i = 0;
 	for (; i < idx; node = node->next, ++ i);
@@ -142,7 +148,6 @@ ll_get (llist *ll, int idx) {
 	return node;
 }
 
-// TODO: implement void *ll_get(llist *ll, int idx);#-1
 // see macro in linked_list.h
 /* void */
 /* ll_at (llist *ll, int idx, void *data) { */
