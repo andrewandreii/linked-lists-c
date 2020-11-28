@@ -102,6 +102,7 @@ ll_remove (llist *ll, int idx) {
 		}
 	} else if (node == ll->end) {
 		ll->end = ll->end->prev;
+		ll->end->next = NULL;
 	} else {
 		node->prev->next = node->next;
 		node->next->prev = node->prev;
@@ -135,8 +136,6 @@ ll_node *
 ll_find (llist *ll, void *data) {
 	ll_node *node = ll->root;
 	for (; node && memcmp(data, node->d, ll->elem_size) != 0; node = node->next);
-
-	if (!node) return NULL;
 
 	return node;
 }

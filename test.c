@@ -43,11 +43,10 @@ main (void) {
 
 	ll = ll_make(4);
 	ll_append(ll, &elem);
-	++ elem;
 	ll_append(ll, &elem);
-	ll_remove(ll, ll_index(ll, &elem));
-	-- elem;
-	ll_remove(ll, ll_index(ll, &elem));
+	ll_remove(ll, 1);
+	++ elem;
+	ll_find(ll, &elem);
 
 	ll_free(ll);
 
